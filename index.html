@@ -3,6 +3,24 @@
 	window.onload = () => {
 		fetch("https://api.github.com/users/RickSunchez/repos")
 			.then(resp => resp.json())
-			.then(answ=>console.log(answ))
+			.then(answ => {
+				for (repo of answ) {
+					let li = document.createElement("li"),
+						a  = document.createElement("a");
+
+					a.href = repo.clone_url;
+					a.innerText = repo.description
+						? repo.description
+						: repo.full_name.replace("RickSunchez/", "");
+					a.target = "preview";
+
+					li.appendChild(a);
+					document
+						.querySelector("#repos_list")
+						.appendChild(li);
+				}
+			})
 	}
 </script>
+<ul id="repos_list"></ul>
+<iframe src="" name="preview"></iframe>
