@@ -9,10 +9,8 @@
 						a  = document.createElement("a");
 
 					a.href = repo.clone_url;
-					a.innerText = repo.description
-						? repo.description
-						: repo.full_name.replace("RickSunchez/", "");
-					a.target = "preview";
+					a.innerText = repo.full_name.replace("RickSunchez/", "");
+					a.target = "blank";
 
 					li.appendChild(a);
 					document
@@ -23,4 +21,4 @@
 	}
 </script>
 <ul id="repos_list"></ul>
-<iframe src="" name="preview"></iframe>
+
