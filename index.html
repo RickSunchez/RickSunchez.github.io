@@ -6,12 +6,18 @@
 			.then(answ => {
 				for (repo of answ) {
 					let li = document.createElement("li"),
-						a  = document.createElement("a");
+						a  = document.createElement("a"),
+						div = document.createElement("div");
 
-					a.href = repo.clone_url;
+					a.href      = repo.clone_url;
 					a.innerText = repo.full_name.replace("RickSunchez/", "");
-					a.target = "blank";
+					a.target    = "blank";
 
+					div.innerText = repo.description
+						? repo.description
+						: "Description not found";
+
+					li.appendChild(div);
 					li.appendChild(a);
 					document
 						.querySelector("#repos_list")
@@ -20,5 +26,35 @@
 			})
 	}
 </script>
+<style type="text/css">
+	#repos_list {
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+		display: flex;
+		width: 100%;
+		height: auto;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: center;
+	}
+	#repos_list li {
+		padding: 10px;
+		margin: 10px;
+		border-radius: 10px;
+		border: solid 1px grey;
+		max-width: 300px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+	#repos_list li div {
+		background-color: #E2E2E2;
+		padding: 5px;
+		text-align: center;
+		border-radius: 3px;
+	}
+</style>
 <ul id="repos_list"></ul>
 
